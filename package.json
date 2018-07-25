@@ -1,0 +1,35 @@
+{
+  "name": "timestamp",
+  "version": "1.0.0",
+  "description": "An FCC Backend Challenge",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "engines": {
+    "node": "8.11.1",
+    "npm": "6.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RicardoL-AFati/fcc-timeStamp.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "freecodecamp"
+  ],
+  "author": "Ricardo Ledesma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RicardoL-AFati/fcc-timeStamp/issues"
+  },
+  "homepage": "https://fcc-time-stamp-rl.herokuapp.com/",
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
