@@ -10,7 +10,14 @@ app.get('/api/timestamp/', (req, res) => {
 });
 
 app.get('/api/timestamp/:date_string?', (req, res) => {
-  const now = new Date(req.params.date_string);
+  let date = req.params.date_string;
+  console.log(typeof date);
+  if (!date.match(/\d\d\d\d-\d\d-\d\d/)) {
+    date = parseInt(date, 10);
+  }
+  console.log(typeof date);
+  const now = new Date(date);
+  console.log(now);
   if (now === 'Invalid Date') {
     res.send({ unix: 'null', utc: 'Invalid Date' });
   } else {
