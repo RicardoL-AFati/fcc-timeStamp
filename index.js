@@ -5,16 +5,24 @@ const path = require('path');
 
 app.use(cors({ optionsSuccessStatus: 200 }));
 
-app.get('/api/timestamp/:date_string?', (req, res) => {
-  console.log(req);
+app.get('/api/timestamp/', (req, res) => {
+  res.send({ unix: new Date().getTime(), utc: new Date().toUTCString() });
 });
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('build'));
+app.get('/api/timestamp/:date_string?', (req, res) => {
+  const now = new Date(req.params.date_string);
+  if (now === 'Invalid Date') {
+    res.send({ unix: 'null', utc: 'Invalid Date' });
+  } else {
+    res.send({ unix: now.getTime(), utc: now.toUTCString() });
+  }
+});
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-  });
-}
+app.use(express.static('build'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
